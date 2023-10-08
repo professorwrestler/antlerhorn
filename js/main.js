@@ -339,9 +339,8 @@ class GameScene extends Phaser.Scene
         entire run of our spacebar event down
         in the update method into this touch input/click
         arrow function*/
-        this.input.on('gameobjectdown', (pointer, gameObject) =>
-        {
 
+        this.input.on('pointerdown', () => {
             this.flameSound.play();
             
             //play the "shoot" animation once
@@ -352,14 +351,14 @@ class GameScene extends Phaser.Scene
             });
 
             //make a bullet
-        const bullet = this.bullets.get();
-        if (bullet) {
+            const bullet = this.bullets.get();
+            if (bullet) {
             //if there's a bullet, put it in the middle of the player
-            bullet.fire(this.player.x + 5, this.player.y + 15);
-            bullet.play({ key: 'flameAnimation', repeat: -1 });
+                bullet.fire(this.player.x + 5, this.player.y + 15);
+                bullet.play({ key: 'flameAnimation', repeat: -1 });
             }
-
         });
+
 
         //play the main music track
         this.mainTheme.play();
@@ -388,11 +387,11 @@ class GameScene extends Phaser.Scene
             });
 
             //make a bullet
-        const bullet = this.bullets.get();
-        if (bullet) {
+            const bullet = this.bullets.get();
+            if (bullet) {
             //if there's a bullet, put it in the middle of the player
-            bullet.fire(this.player.x + 5, this.player.y + 15);
-            bullet.play({ key: 'flameAnimation', repeat: -1 });
+                bullet.fire(this.player.x + 5, this.player.y + 15);
+                bullet.play({ key: 'flameAnimation', repeat: -1 });
             }
         } 
        
