@@ -33,6 +33,9 @@ class GameScene extends Phaser.Scene
         this.background1 = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height, "background1").setOrigin(0, 0); 
         this.background3 = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height, "background3").setOrigin(0, 0);
 
+        //add two pointers
+        this.input.addPointer(2);
+
         //add our sound effects
         this.hitSound = this.sound.add("hit");
         //lower the volume some
@@ -107,12 +110,22 @@ class GameScene extends Phaser.Scene
 
 
         //add the player
-        this.player = this.physics.add.sprite(60, 60, 'playerAnimated').setScale(2);
+        this.player = this.physics.add.sprite(60, 60, 'playerAnimated').setScale(2).setInteractive({ draggable: true });
+        
         //have em come out playing the fly animation
         this.player.play({ key: "fly", repeat: -1 });
 
         //collide with world bounds (which is set to the game's window size)
         this.player.setCollideWorldBounds(true);
+
+        //make player draggable
+        this.player.on('drag', function (pointer, dragX, dragY)
+        {
+
+            this.x = dragX;
+            this.y = dragY;
+
+        });
        
         //setup spacebar for firing bullets
         this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -318,6 +331,34 @@ class GameScene extends Phaser.Scene
                 //then play the original "fly" animation on repeat
                 this.player.play({ key: 'fly', repeat: -1 });
                 });     
+        });
+
+        /*
+        use second multitouch to fire bullets--
+        I'm basically copying and pasting the 
+        entire run of our spacebar event down
+        in the update method into this touch input/click
+        arrow function*/
+        this.input.on('gameobjectdown', (pointer, gameObject) =>
+        {
+
+            this.flameSound.play();
+            
+            //play the "shoot" animation once
+            this.player.play("shoot").once('animationcomplete', () => {
+            //then play the original "fly" animation on repeat
+            this.player.play({ key: 'fly', repeat: -1 });
+            
+            });
+
+            //make a bullet
+        const bullet = this.bullets.get();
+        if (bullet) {
+            //if there's a bullet, put it in the middle of the player
+            bullet.fire(this.player.x + 5, this.player.y + 15);
+            bullet.play({ key: 'flameAnimation', repeat: -1 });
+            }
+
         });
 
         //play the main music track
