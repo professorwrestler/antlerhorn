@@ -7,20 +7,20 @@ class GameScene extends Phaser.Scene
     preload ()
     {
         //load our assets
-        this.load.image("background0", "/assets/parallax0.png");
-        this.load.image("background1", "/assets/parallax1.png");
-        this.load.image("background2", "/assets/parallax2.png");
-        this.load.image("background3", "/assets/parallax3.png");
-        this.load.spritesheet("playerAnimated", "/assets/playerAnimated.png", { frameWidth: 16, frameHeight: 32 });
-        this.load.spritesheet("enemy1", "assets/enemy1.png", { frameWidth: 16, frameHeight: 16});
-        this.load.image("bullet", "/assets/bullet.png");
-        this.load.image("ui", "/assets/uiOverlay.png");
-        this.load.image("life", "/assets/life.png");
-        this.load.spritesheet("flame", "/assets/flame.png", { frameWidth: 16, frameHeight: 16 });
-        this.load.audio('hit', '/assets/explosion.wav');
-        this.load.audio('flame', '/assets/hitHurt.wav');
-        this.load.audio('enemyHit', '/assets/laserShoot.wav');
-        this.load.audio('mainTheme', '/assets/mainTheme.wav');
+        this.load.image("background0", "./assets/parallax0.png");
+        this.load.image("background1", "./assets/parallax1.png");
+        this.load.image("background2", "./assets/parallax2.png");
+        this.load.image("background3", "./assets/parallax3.png");
+        this.load.spritesheet("playerAnimated", "./assets/playerAnimated.png", { frameWidth: 16, frameHeight: 32 });
+        this.load.spritesheet("enemy1", "./assets/enemy1.png", { frameWidth: 16, frameHeight: 16});
+        this.load.image("bullet", "./assets/bullet.png");
+        this.load.image("ui", "./assets/uiOverlay.png");
+        this.load.image("life", "./assets/life.png");
+        this.load.spritesheet("flame", "./assets/flame.png", { frameWidth: 16, frameHeight: 16 });
+        this.load.audio('hit', "./assets/explosion.wav");
+        this.load.audio('flame', "./assets/hitHurt.wav");
+        this.load.audio('enemyHit', "./assets/laserShoot.wav");
+        this.load.audio('mainTheme', "./assets/mainTheme.wav");
 
     }
 
